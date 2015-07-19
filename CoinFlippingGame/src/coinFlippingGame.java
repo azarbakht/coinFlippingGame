@@ -9,24 +9,44 @@ public class coinFlippingGame {
 
 	public static void main(String[] args) {
 
-		int upperBound = (int) Math.pow(2, 8);
-		int count0, count1, validCaseCount =0, totalValid = 0;
+//		int upperBound = (int) Math.pow(2, 8);
+//		int count0, count1, validCaseCount =0, totalValid = 0;
+//
+//		for(int i = 0; i < upperBound; i++){
+//
+//			System.out.println(i);
+//			System.out.printf("Binary representation: %20s \n", Integer.toBinaryString(i));
+//			System.out.printf("numberOfHeads = %20d \n" , Integer.bitCount(i));
+//			System.out.printf("numberf of coin flips = %12d \n" , Integer.toBinaryString(i).length());
+//
+//			int numberOfOnesHeads = Integer.bitCount(i);
+//			int numberOfCoinFlips = Integer.toBinaryString(i).length();
+//			int numberOfZerosTails = numberOfCoinFlips - numberOfOnesHeads;
+//
+//			if (numberOfOnesHeads == numberOfZerosTails){
+//					validCaseCount++;
+//			}
+//
+//			System.out.printf("Number of Valid cases = %13d \n", validCaseCount);
+//
+//		}
 
-		for(int i = 0; i < upperBound; i++){
-
-			count1 = Integer.bitCount(i);
-			count0 = 8 - count1;
-
-			if(count1 == count0){
-				validCaseCount++;
-			}
-			System.out.printf("number of valid cases so far: %d \n", validCaseCount);
-			totalValid += validCaseCount; 
-			validCaseCount = 0;
-		}
-
-		System.out.printf("The total number of times the number of heads and tails are equal is: %d", totalValid);
-
+		stopCasesBefore8th(2);
+		stopCasesBefore8th(4);
+		
 	}
+	
+	public static void stopCasesBefore8th(int numberOfFlips){
+		
+		int upperBound = (int) Math.pow(2, numberOfFlips);
+		int lowerBound = (int) Math.pow(2, numberOfFlips-1);
+		System.out.println(lowerBound);
+		
+		for(int i= lowerBound; i < upperBound; i++){
+			System.out.printf("Binary representation of i: %20s \n", Integer.toBinaryString(i));
 
+		}
+		
+	}
+	
 }
