@@ -2,6 +2,7 @@
  * @author Emerson Amirhosein Azarbakht
  * azarbaam@eecs.oregonstate.edu
  * Coin Flipping Game, for 8 dollars
+ * Your friend has a coin and asks you if you want to play a game. "I will flip this coin until the number of heads flipped is equal to the number of tails flipped. Then I will give you a dollar for each time I flipped the coin." What are the chances that you play this game with your friend once and he pays you exactly eight dollars?
  */
 
 public class coinFlippingGame {
@@ -20,7 +21,7 @@ public class coinFlippingGame {
 	public static void coinFlipValidCaseCounter(int totalNumberOfFlips){
 
 		int upperBound = (int) Math.pow(2, totalNumberOfFlips);
-		int lowerBound = (int) Math.pow(2, totalNumberOfFlips-1);
+		int lowerBound = (int) Math.pow(2, totalNumberOfFlips-2);
 		int validCaseCount = 0;
 
 		System.out.printf("LowerBound: %d \n UpperBound: %d \n", lowerBound, upperBound);
@@ -53,11 +54,12 @@ public class coinFlippingGame {
 			}
 
 			if (numberOfHeads == numberOfTails){
-				System.out.printf("This would stop earlier %40s \n", binaryString);
+				System.out.printf("========== This would stop earlier %20s ================== \n", binaryString);
 				return TRUE;
-			}
+			} 
+			
 		} 
-		
+		System.out.printf("@@@@@@@@@@@@@@@@@@@@@@@   VALID CASE: %15s    @@@@@@@@@@@@@@@@@@@@@@ \n", binaryString);		
 		return FALSE;
 	}
 
