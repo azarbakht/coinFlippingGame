@@ -1,8 +1,12 @@
 /**
  * @author Emerson Amirhosein Azarbakht
  * azarbaam@eecs.oregonstate.edu
+ * 
  * Coin Flipping Game, for 8 dollars
- * Your friend has a coin and asks you if you want to play a game. "I will flip this coin until the number of heads flipped is equal to the number of tails flipped. Then I will give you a dollar for each time I flipped the coin." What are the chances that you play this game with your friend once and he pays you exactly eight dollars?
+ * Your friend has a coin and asks you if you want to play a game. 
+ * "I will flip this coin until the number of heads flipped is equal to the number of tails flipped. 
+ * Then I will give you a dollar for each time I flipped the coin." 
+ * What are the chances that you play this game with your friend once and he pays you exactly eight dollars?
  */
 
 public class coinFlippingGame {
@@ -11,32 +15,36 @@ public class coinFlippingGame {
 	private static final boolean TRUE = true;
 	private static final boolean FALSE = false;
 
-
 	public static void main(String[] args) {
 
-		coinFlipValidCaseCounter(8);
-
+		float rewardProbability = 0;
+		rewardProbability = coinFlipValidCaseCounter(8);
 	}
 
-	public static void coinFlipValidCaseCounter(int totalNumberOfFlips){
+	public static float coinFlipValidCaseCounter(int totalNumberOfFlips){
 
 		int upperBound = (int) Math.pow(2, totalNumberOfFlips);
-		int lowerBound = (int) Math.pow(2, totalNumberOfFlips-2);
+		int lowerBound = 0;
 		int validCaseCount = 0;
+		float probability = 0;
 
 		System.out.printf("LowerBound: %d \n UpperBound: %d \n", lowerBound, upperBound);
 
 		for(int i= lowerBound; i < upperBound; i++){
-			String binaryStringI = Integer.toBinaryString(i);
-			System.out.printf("Binary representation of i: *** %20s *** \n", binaryStringI);
+			
+			String binaryStringI = String.format("%8s", Integer.toBinaryString(i)).replace(' ', '0');
+			System.out.printf("Binary representation of i: *** %8s *** \n", binaryStringI);
 
-			if (Integer.bitCount(i)==4){
+			if (Integer.bitCount(i)== (totalNumberOfFlips/2)){
 				if (wouldStopEarlier(binaryStringI) == FALSE){
 					validCaseCount++;
 				}
 			}
 		}
 		System.out.printf("Total Valid Case Count: %d \n", validCaseCount);
+		probability = (float) validCaseCount * 100 / (float) upperBound;
+		System.out.printf("Probability of making %d dollars in this game is: %2.2f percent \n", totalNumberOfFlips, probability);
+		return probability;
 	}
 
 
