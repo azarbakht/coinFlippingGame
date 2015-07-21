@@ -39,29 +39,35 @@ public class coinFlippingGame {
 		stopCasesBefore8th(8, 0);
 	}
 
-	public static void stopCasesBefore8th(int numberOfFlips, int lowerBound){
+	public static void stopCasesBefore8th(int totalNumberOfFlips, int lowerBound){
 
-		int upperBound = (int) Math.pow(2, numberOfFlips);
+		int upperBound = (int) Math.pow(2, totalNumberOfFlips);
 		int validCaseCount = 0;
+		int stopCaseCount = 0;
 
 		for(int i= lowerBound; i < upperBound; i++){
-			System.out.printf("Binary representation of i: %20s \n", Integer.toBinaryString(i));
+			System.out.printf("Binary representation of i: *** %20s *** \n", Integer.toBinaryString(i));
 
 			int numberOfHeads = Integer.bitCount(i);
-			int numberOfTails = numberOfFlips - numberOfHeads;
+			int numberOfTails = Integer.toBinaryString(i).length() - numberOfHeads;
 			System.out.printf("Number of Heads: %31d \n", numberOfHeads);
+			System.out.printf("Length of binary representation: %20d \n", Integer.toBinaryString(i).length());
+			System.out.printf("Number of Tails: %31d \n", numberOfTails);
+			System.out.println("**************************************************************");
 
 
 			if (numberOfHeads == numberOfTails){
-				System.out.println(numberOfHeads);
-				if (numberOfHeads == 4){
+				System.out.println("STOP CASE HERE $#$#$$#$#$$#$#$##$#$#$#$#$#$#$#$#$#$");
+				if (numberOfHeads != 4){
+					stopCaseCount++;
+				} else if (numberOfHeads == 4){
 					validCaseCount++;	
 				}
 
 			}
 
 		}
-		System.out.printf("number of Valid Cases: %10d", validCaseCount);
+		System.out.printf("number of Valid Cases: %10d \n number of Stop Cases != 4: %10d", validCaseCount, stopCaseCount);
 
 	}
 
